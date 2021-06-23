@@ -4,6 +4,8 @@
   
 - `npm install --save react-redux redux`
   
-- Poner un wrapper a <App/> -> <Provider>
+- Poner un wrapper a `<App/> -> <Provider>`
   
-- Creación de la store. store.jsC
+- Creación de la store. store.js
+  
+- Crear reducer.js
