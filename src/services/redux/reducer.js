@@ -1,26 +1,26 @@
 const initialState = {
-    visibility: 'ALL',
-    todos: []
-}
+  visibility: "ALL",
+  todos: [],
+};
 
 function reducer(state = initialState, action) {
-    switch (action.type) {
+  console.log(action);
+  switch (action.type) {
+    case "ADD_TODO":
+      return {
+        ...state,
+        todos: [
+          ...state.todos,
+          {
+            text: action.payload,
+            completed: action.completed || false,
+          },
+        ],
+      };
 
-        case 'ADD_TODO':
-            return {
-                ...state,
-                todos: [
-                    ...state.todos,
-                    {
-                        text: action.payload,
-                        completed: false,
-                    }
-                ]
-            }
-
-        default:
-            return state
-    }
+    default:
+      return state;
+  }
 }
 
 export default reducer;

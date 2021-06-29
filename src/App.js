@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { connect } from "react-redux";
 
-function App() {
+function App(props) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* la etiqueta PRE mantiene los saltos de linea */}
+      <pre>{JSON.stringify(props, null, 2)}</pre>
+      <button onClick={() => props.addRandomTodo()}>add todo</button>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({ state: state });
+
+const mapDispatchToProps = (dispatch) => ({
+  addRandomTodo: () =>
+    dispatch({
+      type: "ADD_TODO",
+      payload: "borra esta tarea!",
+      completed: Math.random() > 0.5 ? true : false
+    }),
+});
+
+const connectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
+export default connectedApp;
